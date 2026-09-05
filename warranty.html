@@ -4,84 +4,75 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Warranty &amp; Terms | Harbour Closets</title>
-<meta name="description" content="Harbour Closets' lifetime workmanship warranty and terms — what's covered, what's not, and how to make a claim.">
+<meta name="description" content="Harbour Closets' lifetime workmanship warranty and terms of coverage.">
 <link rel="canonical" href="https://harbourclosets.com/warranty.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --harbour: #2C3A42; --harbour-deep: #1F2A30; --brass: #A8824F; --brass-deep: #8C6B3D;
-  --fog: #F3F1EC; --paper: #FBFAF7; --ink: #1F2623; --slate: #6B7570; --line: #DDD6C8;
-  --display: "Fraunces", Georgia, serif; --sans: "Karla", -apple-system, sans-serif; --max: 1180px;
-}
-* { box-sizing: border-box; }
-body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.6; }
-a { color: var(--brass-deep); }
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-header { padding: 24px 0; border-bottom: 1px solid var(--line); }
-.header-inner { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-.brand { font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--ink); text-decoration: none; }
-.btn-call { border: 1px solid var(--harbour); color: var(--harbour); font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 2px; text-decoration: none; }
-main { padding: 70px 0 90px; }
-.eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-deep); font-weight: 700; margin: 0 0 14px; }
-h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 3vw + 1rem, 2.8rem); margin: 0 0 8px; }
-.updated { color: var(--slate); font-size: 14px; margin-bottom: 40px; }
-h2 { font-family: var(--display); font-weight: 500; font-size: 21px; margin: 40px 0 14px; }
-p, li { font-size: 15.5px; color: var(--ink); }
-ul { padding-left: 20px; }
-li { margin-bottom: 8px; }
-footer { background: var(--harbour-deep); padding: 28px 0; margin-top: 60px; }
-.footer-inner { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; align-items: center; }
-.footer-mark { font-family: var(--display); color: #fff; font-size: 15px; }
-.footer-copy { color: rgba(255,255,255,0.55); font-size: 13px; }
-.footer-copy a { color: rgba(255,255,255,0.75); }
-</style>
+<link rel="stylesheet" href="styles.min.css">
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="brand">Harbour Closets</a>
-    <a href="tel:19056606696" class="btn-call">(905) 660-6696</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand"><span class="brand-name">HARBOUR CLOSETS</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="walk-ins.html">Walk-In Closets</a>
+      <a href="reach-ins.html">Reach-Ins &amp; Wardrobes</a>
+      <a href="mudrooms.html">Mudrooms &amp; Built-Ins</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="tel:12895005666" class="btn-call">(289) 500-5666</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<main class="wrap">
-  <p class="eyebrow">Warranty</p>
-  <h1>Warranty &amp; Terms</h1>
-  <p class="updated">Last updated August 2026</p>
+<section class="legal-page reveal">
+  <div class="wrap legal-inner">
+    <p class="breadcrumb-trail"><a href="index.html">Home</a> / Warranty &amp; Terms</p>
+    <p class="eyebrow">WARRANTY &amp; TERMS</p>
+    <h1>Lifetime Workmanship Warranty</h1>
+    <p class="legal-updated">Last updated August 2026</p>
 
-  <h2>Lifetime Workmanship Warranty</h2>
-  <p>Every closet we build is backed by a lifetime workmanship warranty. If a panel delaminates, warps, chips, or otherwise fails due to a manufacturing or installation defect, we will repair or replace it at no cost to you, for as long as you own the property.</p>
+    <h2>Coverage Details</h2>
+    <p>Every closet built by Harbour Closets (a division of Newood Millwork Inc) is backed by a lifetime workmanship warranty. If a panel delaminates, warps, chips, or separates due to a manufacturing or installation defect, we will repair or replace it at no cost for as long as you own the property.</p>
 
-  <h2>Materials</h2>
-  <p>The boxes, doors, drawers, and panels we build with are covered under the lifetime workmanship warranty above. We build using composite wood panels sourced from established North American manufacturers &mdash; Uniboard, Tafisa Canada, and EGGER &mdash; certified to FSC&reg; responsible-forestry standards and meeting TSCA Title VI / CARB Phase 2 formaldehyde emission requirements.</p>
+    <h2>Hardware Term</h2>
+    <p>Moving mechanical hardware — soft-close hinges, full-extension drawer slides, and pull-out accessories — is covered for 5 years from installation date under standard hardware manufacturer terms.</p>
 
-  <h2>Hardware</h2>
-  <p>Moving hardware &mdash; hinges, drawer slides, and hanging rods &mdash; is covered for 5 years from the date of installation. This is a separate term from the lifetime workmanship coverage above, since hardware is mechanical and wears with regular use.</p>
+    <h2>Certified Materials</h2>
+    <p>We build exclusively with FSC&reg; certified composite wood panels meeting TSCA Title VI / CARB Phase 2 formaldehyde emission standards sourced from Uniboard, Tafisa Canada, and EGGER.</p>
 
-  <h2>What's Not Covered</h2>
-  <ul>
-    <li>Normal wear and tear, including wear on high-use hardware</li>
-    <li>Damage caused by improper use, accidents, or modifications made after installation</li>
-    <li>Products or materials supplied by a third party, not installed by us</li>
-  </ul>
-
-  <h2>Making a Warranty Claim</h2>
-  <p>Contact us at <a href="mailto:info@harbourclosets.com">info@harbourclosets.com</a> or <a href="tel:19056606696">(905) 660-6696</a> with your name, address, and a description or photo of the issue. We'll respond within 24&ndash;48 business hours.</p>
-
-  <h2>General Terms</h2>
-  <p>This warranty applies only to work completed by Harbour Closets and is not transferable to a subsequent owner of the property unless otherwise agreed in writing. Harbour Closets reserves the right to update these terms; the version published on this page at the time your project was completed is the version that applies to you.</p>
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <span class="footer-mark">Harbour Closets</span>
-    <p class="footer-copy">&copy; <span id="year"></span> Harbour Closets. All rights reserved. &middot; <a href="privacy.html">Privacy Policy</a></p>
+    <p class="legal-note">This warranty summary has not been reviewed by a lawyer. Before treating it as a binding contract term, have the exact wording reviewed by a licensed Ontario lawyer.</p>
   </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <span class="footer-mark">HARBOUR CLOSETS</span>
+      <p class="footer-tagline">A residential division of <a href="https://newoodmillwork.com/" target="_blank" rel="noopener">Newood Millwork Inc</a></p>
+    </div>
+    <div class="footer-certs">
+      <p class="footer-certs-lead">Built with certified panels from trusted North American suppliers</p>
+      <div class="supplier-badges">
+        <span class="supplier-badge"><strong>Uniboard</strong> &mdash; FSC&reg; &amp; CARB Phase 2 / TSCA Title VI Certified</span>
+        <span class="supplier-badge"><strong>Tafisa Canada</strong> &mdash; FSC&reg; Certified &amp; CARB Phase 2 Compliant</span>
+        <span class="supplier-badge"><strong>Egger</strong> &mdash; FSC&reg; &amp; PEFC Certified, CARB / TSCA Title VI Compliant</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; <span id="year"></span> Harbour Closets. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="terms.html" class="footer-legal-link">Terms of Use</a>
+        <a href="warranty.html" class="footer-legal-link">Warranty</a>
+        <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-credit">Site by <a href="https://yorkregionwebstudio.com/" target="_blank" rel="noopener">Yorkregionwebstudio.com</a></p>
 </footer>
 
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="script.min.js"></script>
 </body>
 </html>
