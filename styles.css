@@ -1,9 +1,8 @@
 /* ============================================================
-   HAVENWEST CLOSETS — DESIGN ENGINE
-   A residential division of Newoodmillwork — shares the family's
-   navy + aged-metal material language, tuned toward the water:
+   HAVENWEST CLOSETS & STORAGE SOLUTIONS — DESIGN ENGINE
+   Navy + aged-metal material language, tuned toward the water:
    Haven Deep (navy-teal) + Verdigris (weathered brass/copper),
-   with warm Brass kept as the quiet nod back to the parent brand.
+   with warm Brass as a secondary accent.
    ============================================================ */
 
 :root {
@@ -16,7 +15,7 @@
   --accent-deep: #35615A;
   --accent-light: #A8D3C9;
 
-  --brass: #B08D5B;         /* shared material nod to Newood's brushed brass */
+  --brass: #B08D5B;         /* secondary accent — weathered brass */
   --brass-light: #D9C5A0;
 
   --paper: #FAF8F3;
@@ -109,7 +108,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: var(--navy-950); border-bottom: 1px solid var(--navy-line);
 }
 .header-inner { display: flex; align-items: center; height: 76px; gap: 24px; }
-.brand { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; flex: 0 0 auto; line-height: 1.15; }
+.brand { display: flex; flex-direction: row; align-items: center; gap: 10px; flex: 0 0 auto; }
+.brand-icon { height: 40px; width: auto; display: block; flex: 0 0 auto; }
+.brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.15; }
 .brand-name { font-family: var(--display); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.03em; color: #fff; }
 .brand-sub { font-family: var(--mono); font-size: 0.56rem; font-weight: 500; letter-spacing: 0.1em; color: var(--accent-light); text-transform: uppercase; }
 
@@ -226,15 +227,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .contact-list-compact li span { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; color: var(--accent-light); }
 .contact-list-compact li a { color: #fff; font-size: 0.95rem; }
 .contact-list-compact li a:hover { color: var(--accent-light); }
+.contact-list-compact li span.tbd-text { font-family: var(--sans); font-size: 0.95rem; text-transform: none; letter-spacing: normal; color: rgba(255,255,255,0.7); }
 .contact-map { height: 240px; overflow: hidden; }
-.contact-map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.2); }
+.map-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: var(--navy-900); color: rgba(255,255,255,0.5);
+}
+.map-placeholder svg { width: 32px; height: 32px; }
+.map-placeholder p { margin: 0; font-family: var(--mono); font-size: 0.78rem; color: rgba(255,255,255,0.5); }
 
 /* Footer — one unified block, sub-groups divided by hairlines rather than
    alternating full-bleed bands, so it reads as a single footer everywhere. */
 .site-footer { background: var(--navy-950); border-top: 1px solid var(--navy-line); }
 .footer-top { text-align: center; padding: 44px 0 26px; }
-.footer-mark { display: block; color: #fff; font-family: var(--display); font-size: 1.3rem; margin-bottom: 2px; }
-.footer-mark-sub { display: block; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--accent-light); text-transform: uppercase; margin-bottom: 8px; }
+.footer-logo { width: 100%; max-width: 190px; height: auto; margin: 0 auto; }
 .footer-tagline { font-family: var(--mono); font-size: 0.76rem; color: rgba(255,255,255,0.6); margin: 0; }
 .footer-tagline a { color: var(--brass-light); }
 .footer-tagline a:hover { text-decoration: underline; }

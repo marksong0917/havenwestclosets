@@ -27,7 +27,7 @@ if (quoteForm) {
       'Project Details:',
       details || '(none provided)'
     ].filter(Boolean);
-    window.location.href = `mailto:info@harbourclosets.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    window.location.href = `mailto:marksong0000@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
   }
 
   quoteForm.addEventListener('submit', async (e) => {
