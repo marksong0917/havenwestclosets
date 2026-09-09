@@ -17,7 +17,7 @@ if (quoteForm) {
   const submitBtn = quoteForm.querySelector('button[type="submit"]');
 
   function sendViaMailto(name, email, phone, type, details) {
-    const subject = `Harbour Closets Inquiry: ${type || 'Custom Closet'} — ${name}`;
+    const subject = `Havenwest Closets Inquiry: ${type || 'Custom Closet'} — ${name}`;
     const bodyLines = [
       `Name: ${name}`,
       `Email: ${email}`,
@@ -59,7 +59,7 @@ if (quoteForm) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Harbour Closets Inquiry: ${type || 'Custom Closet'} — ${name}`,
+          subject: `Havenwest Closets Inquiry: ${type || 'Custom Closet'} — ${name}`,
           name,
           email,
           phone,
