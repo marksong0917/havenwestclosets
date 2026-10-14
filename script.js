@@ -40,7 +40,11 @@ if (quoteForm) {
     const details = document.getElementById('qDetails')?.value.trim() || '';
 
     if (!name || !email) {
-      alert('Please fill in your name and email address.');
+      const statusEl = document.getElementById('formStatus');
+      if (statusEl) {
+        statusEl.textContent = 'Please fill in your name and email address.';
+        statusEl.classList.add('form-error');
+      }
       return;
     }
 
@@ -70,7 +74,7 @@ if (quoteForm) {
       const data = await res.json();
       if (data.success) {
         quoteForm.reset();
-        if (statusEl) statusEl.textContent = "Thanks — we'll be in touch within 24–48 business hours.";
+        if (statusEl) statusEl.textContent = "Thanks — we'll be in touch within 1–2 business days.";
       } else {
         throw new Error(data.message || 'Submission failed');
       }
@@ -98,5 +102,13 @@ if (navToggle && mainNav) {
       mainNav.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mainNav.classList.contains('open')) {
+      mainNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
   });
 }
