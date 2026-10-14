@@ -230,7 +230,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: var(--navy-950); border: 1px solid var(--navy-line); color: #fff;
   padding: 11px 12px; font-family: var(--sans); font-size: 0.92rem; border-radius: var(--radius);
 }
-.form-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www
+.form-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8D3C9' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 36px; }
 .contact-side { display: flex; flex-direction: column; gap: 20px; }
 .contact-list-compact li { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--navy-line); }
 .contact-list-compact li span { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; color: var(--accent-light); }
