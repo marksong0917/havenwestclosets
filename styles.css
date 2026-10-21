@@ -353,3 +353,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .made-in-canada{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:rgba(255,255,255,.72)}
 .footer-ig{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--navy-line);border-radius:50%;color:rgba(255,255,255,.7);transition:all .2s}
 .footer-ig:hover{border-color:var(--brass-light);color:var(--brass-light)}
+
+/* Havenwest logo (draft #2, selected Oct 2026) */
+.brand-logo { height: 48px; width: auto; display: block; border-radius: 4px; }
+.footer-logo-img { height: 56px; width: auto; display: block; border-radius: 4px; margin-bottom: 10px; }
