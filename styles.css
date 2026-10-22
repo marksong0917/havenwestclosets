@@ -271,6 +271,39 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .legal-note { font-size: 0.82rem; color: var(--ink-faint); border-top: 1px solid var(--line); padding-top: 20px; margin-top: 8px; }
 .form-disclaimer { font-size: 0.76rem; color: rgba(255,255,255,0.5); max-width: 520px; margin: 14px 0 0; }
 
+/* Gallery captions */
+.work-item figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 26px 12px 10px; font-size: 0.8rem; line-height: 1.35; color: #fff;
+  background: linear-gradient(transparent, rgba(15, 32, 39, 0.78));
+  pointer-events: none;
+}
+
+/* Map link (contact) */
+a.map-placeholder { text-decoration: none; transition: color 0.2s var(--ease); }
+a.map-placeholder:hover { color: var(--accent-light); }
+a.map-placeholder:hover p { color: var(--accent-light); }
+
+/* Reviews */
+.reviews { padding: 88px 0; background: var(--paper-soft); }
+.review-card { max-width: 640px; margin: 36px 0 0; background: #fff; border: 1px solid var(--line); padding: 30px 28px; }
+.review-stars { color: var(--brass-text); font-size: 1.05rem; letter-spacing: 4px; margin-bottom: 12px; }
+.review-card blockquote { margin: 0 0 14px; font-family: var(--display); font-size: 1.3rem; line-height: 1.4; color: var(--navy-950); }
+.review-card figcaption { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+.review-note { margin-top: 16px; font-size: 0.82rem; color: var(--ink-faint); max-width: 640px; }
+
+/* FAQ */
+.faq { padding: 88px 0; }
+.faq-list { margin-top: 32px; max-width: 760px; }
+.faq-item { border: 1px solid var(--line); background: #fff; margin-bottom: 12px; }
+.faq-item summary { cursor: pointer; padding: 16px 20px; font-weight: 600; font-size: 0.98rem; color: var(--navy-950); }
+.faq-item p { padding: 0 20px 18px; margin: 0; font-size: 0.94rem; }
+.faq-item p a { color: var(--accent-deep); text-decoration: underline; }
+
+/* Form status states */
+.form-note { color: rgba(255,255,255,0.65); font-size: 0.85rem; margin: 12px 0 0; }
+.form-success { color: #7fd1a8; font-weight: 600; }
+
 .mobile-cta { display: none; }
 
 .legal-page { padding: 72px 0 96px; }
