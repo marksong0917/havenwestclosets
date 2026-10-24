@@ -73,6 +73,23 @@ if (quoteForm) {
   });
 }
 
+// Scroll reveal — IntersectionObserver adds .in as sections enter view.
+// The .js-reveal gate is only added when IO is available, so no-JS (or
+// no-IO) visitors see everything; prefers-reduced-motion is handled in CSS.
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && revealEls.length) {
+  document.documentElement.classList.add('js-reveal');
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px 240px 0px' });
+  revealEls.forEach((el) => revealIO.observe(el));
+}
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
