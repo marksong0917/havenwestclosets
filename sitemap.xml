@@ -42,4 +42,10 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://havenwestclosets.com/disclaimer.html</loc>
+  </url>
+  <url>
+    <loc>https://havenwestclosets.com/accessibility.html</loc>
+  </url>
 </urlset>
