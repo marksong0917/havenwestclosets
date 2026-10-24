@@ -1,117 +1,88 @@
-// Footer year
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* Studio Design System v1 — shared script. Identical on every site.
+   Behaviour: mobile nav, scroll reveal, footer year, quote-form AJAX.
+   ★ Per-company config lives in the CONFIG block below — nothing else
+     in this file should change per site. */
+(function () {
+  "use strict";
 
-// Contact form
-//
-// Real delivery via FormSubmit (https://formsubmit.co) — the same setup
-// Newood Millwork uses. Submissions are emailed to the business inbox via
-// the AJAX endpoint, so the visitor stays on the page and gets an in-page
-// success or error message. A hidden honeypot field (_honey) traps bots.
-const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/marksong0000@gmail.com';
+  /* ★ CONFIG — replace per company ─────────────────────────────────────── */
+  var FORMSUBMIT_ENDPOINT = "https://crm.newoodmillwork.com/api/intake/website/"; // company inbox
+  /* ────────────────────────────────────────────────────────────────────── */
 
-const quoteForm = document.getElementById('quoteForm');
-if (quoteForm) {
-  const statusEl = document.getElementById('formStatus');
-  const submitBtn = quoteForm.querySelector('button[type="submit"]');
-
-  function setStatus(msg, kind) {
-    if (!statusEl) return;
-    statusEl.textContent = msg;
-    statusEl.classList.toggle('form-error', kind === 'error');
-    statusEl.classList.toggle('form-success', kind === 'success');
+  /* Mobile nav */
+  var toggle = document.getElementById("navToggle");
+  var nav = document.getElementById("mainNav");
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
+    });
   }
 
-  quoteForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  /* Footer year */
+  var year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 
-    const name = document.getElementById('qName')?.value.trim() || '';
-    const email = document.getElementById('qEmail')?.value.trim() || '';
-    const phone = document.getElementById('qPhone')?.value.trim() || '';
-    const type = document.getElementById('qType')?.value || '';
-    const details = document.getElementById('qDetails')?.value.trim() || '';
-    const honey = quoteForm.querySelector('input[name="_honey"]')?.value || '';
-
-    if (honey) return; // bot trap — silently drop
-
-    if (!name || !email) {
-      setStatus('Please fill in your name and email address.', 'error');
-      return;
-    }
-
-    if (submitBtn) submitBtn.disabled = true;
-    setStatus('Sending…', '');
-
-    try {
-      const res = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          project_type: type,
-          message: details,
-          _subject: `Havenwest Closets Inquiry: ${type || 'Custom Closet'} — ${name}`,
-          _template: 'table',
-          _captcha: 'false',
-          _honey: honey
-        })
+  /* Scroll reveal — gated so no-JS / no-IO keeps everything visible */
+  var revealEls = document.querySelectorAll(".reveal");
+  if (revealEls.length && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("js-reveal");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
       });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && (data.success === true || data.success === 'true')) {
-        quoteForm.reset();
-        setStatus("Thanks — your message is in. We'll reply within 1–2 business days.", 'success');
-      } else {
-        throw new Error(data.message || 'Submission failed');
+    }, { rootMargin: "0px 0px 240px 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  /* Quote form — progressive enhancement over the native FormSubmit POST.
+     Without JS the form still submits (full-page) to the same inbox. */
+  var form = document.getElementById("quoteForm");
+  var status = document.getElementById("formStatus");
+  if (form && status) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (form.querySelector('[name="_honey"]').value) return; // honeypot
+      var name = form.querySelector('[name="name"]').value.trim();
+      var email = form.querySelector('[name="email"]').value.trim();
+      if (!name || !email) {
+        status.textContent = "Please add your name and email so we can reply.";
+        status.className = "form-status is-error";
+        return;
       }
-    } catch (err) {
-      setStatus("Something went wrong sending your message. Please call (289) 500-5666 or email marksong0000@gmail.com and we'll help right away.", 'error');
-    } finally {
-      if (submitBtn) submitBtn.disabled = false;
-    }
-  });
-}
-
-// Scroll reveal — IntersectionObserver adds .in as sections enter view.
-// The .js-reveal gate is only added when IO is available, so no-JS (or
-// no-IO) visitors see everything; prefers-reduced-motion is handled in CSS.
-const revealEls = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window && revealEls.length) {
-  document.documentElement.classList.add('js-reveal');
-  const revealIO = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        revealIO.unobserve(entry.target);
-      }
+      var data = {};
+      new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== "_") data[k] = v; });
+      status.textContent = "Sending…";
+      status.className = "form-status";
+      fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        if (!r.ok) throw new Error("send failed");
+        form.reset();
+        status.textContent = "Thanks — your message is in. We reply within 1–2 business days.";
+        status.className = "form-status is-success";
+      }).catch(function () {
+        status.textContent = "Something went wrong sending — please call or email us directly.";
+        status.className = "form-status is-error";
+      });
     });
-  }, { threshold: 0, rootMargin: '0px 0px 240px 0px' });
-  revealEls.forEach((el) => revealIO.observe(el));
-}
-
-// Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const mainNav = document.getElementById('mainNav');
-
-if (navToggle && mainNav) {
-  navToggle.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mainNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mainNav.classList.contains('open')) {
-      mainNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.focus();
-    }
-  });
-}
+  }
+})();
