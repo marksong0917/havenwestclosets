@@ -291,3 +291,6 @@ a.card:hover{transform:translateY(-4px);border-color:var(--brand-accent)}
 @media (max-width:760px){.case-grid{grid-template-columns:1fr}}
 
 .about-text{max-width:46rem}
+
+.card-from{font-family:var(--font-mono);font-size:var(--text-small);color:var(--brand-metal-text);display:block;margin-top:var(--space-3)}
+.start-price-line strong{color:var(--brand-accent-deep)}
