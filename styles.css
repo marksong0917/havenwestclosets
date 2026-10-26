@@ -29,7 +29,7 @@
   --paper-soft:#F1EEE6;          /* alternating section background          */
   --ink:#1E2422;                 /* headings                                */
   --ink-soft:#667069;            /* body text                               */
-  --ink-faint:#69716D;           /* captions, meta                          */
+  --ink-faint:#646B67;           /* captions, meta                          */
   --line:#DAD3C4;                /* hairline borders                        */
   --header-bg:var(--brand-dark); /* dark header. Light variant: rgba(255,255,255,.95) + --header-text:var(--ink) */
   --header-text:#FFFFFF;
@@ -291,6 +291,3 @@ a.card:hover{transform:translateY(-4px);border-color:var(--brand-accent)}
 @media (max-width:760px){.case-grid{grid-template-columns:1fr}}
 
 .about-text{max-width:46rem}
-
-.card-from{font-family:var(--font-mono);font-size:var(--text-small);color:var(--brand-metal-text);display:block;margin-top:var(--space-3)}
-.start-price-line strong{color:var(--brand-accent-deep)}
