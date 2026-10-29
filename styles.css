@@ -331,3 +331,106 @@ a.card:hover{transform:translateY(-4px);border-color:var(--brand-accent)}
   .hero-breadcrumb a{display:inline-block;padding-top:12px;padding-bottom:12px}
 }
 .card-grid>.testimonial:only-child{grid-column:1/-1;width:100%;max-width:620px;margin-inline:auto}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FRAMEWORK v2 — MODERN LAYER (generator v179, 2026-10-29)
+   ----------------------------------------------------------------------------
+   Appended at render time to styles.css / styles.min.css ONLY for orgs
+   that opt in via sections["framework"] == "v2" (the brand_wordmark /
+   single_page JSON-flag precedent — no migration). Orgs without the
+   flag render byte-identical to the v1 system.
+
+   Same construction as the canonical YRWS implementation
+   (~/workspace/design-system/TEMPLATE-FRAMEWORK.md): a modern token
+   layer that supersedes the v1 shape / type / elevation values
+   wherever components read tokens, plus modern component overrides.
+   Brand differences arrive ONLY through the brand block's CSS
+   variables — this file carries no brand values of its own, and it
+   is appended AFTER the generator's brand substitution because it
+   speaks purely in var(--brand-*) references.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Modern token layer ─────────────────────────────────────────────────── */
+:root{
+  --text-hero:clamp(2.6rem,5vw + 1rem,4.25rem);
+  --text-h2:clamp(1.85rem,1.6vw + 1.2rem,2.6rem);
+  --text-h3:1.3rem;
+  --text-lead:1.2rem;
+  --leading-heading:1.08;
+  --section-pad:clamp(72px,9vw,112px);
+  --radius:14px;
+  --radius-sm:10px;
+  --radius-lg:20px;
+  --shadow-1:0 1px 2px rgba(2,6,23,.04),0 10px 28px -14px rgba(2,6,23,.12);
+  --shadow-2:0 2px 6px rgba(2,6,23,.05),0 24px 44px -18px rgba(2,6,23,.18);
+  --shadow-3:0 32px 64px -16px rgba(2,6,23,.30);
+  --dur:.3s;
+  --accent-wash:color-mix(in srgb,var(--brand-accent) 16%,transparent);
+  --accent-ring:color-mix(in srgb,var(--brand-accent) 32%,transparent);
+  --scrim:linear-gradient(to top,color-mix(in srgb,var(--brand-dark) 86%,transparent),color-mix(in srgb,var(--brand-dark) 34%,transparent) 55%,color-mix(in srgb,var(--brand-dark) 52%,transparent));
+}
+
+/* ── Base polish ────────────────────────────────────────────────────────── */
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--accent-ring)}
+h1,h2,h3{letter-spacing:-.02em}
+.hero h1{letter-spacing:-.025em}
+:focus-visible{outline:2px solid var(--brand-accent);outline-offset:2px;box-shadow:0 0 0 4px var(--accent-ring)}
+
+/* ── Header: slim glass (72px desktop; the v1 64px mobile height is
+   re-asserted below — this layer lands after the v1 media queries) ── */
+.site-header{background:color-mix(in srgb,var(--header-bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.header-inner{height:72px}
+@media (max-width:760px){
+  .header-inner{height:64px}
+}
+.main-nav a{transition:color var(--dur)}
+
+/* ── Buttons: small radius + accent glow on the primary ─────────────────── */
+.btn{border-radius:var(--radius-sm)}
+.btn-primary{box-shadow:0 10px 24px -10px color-mix(in srgb,var(--brand-accent) 55%,transparent)}
+.btn:active{transform:translateY(0)}
+
+/* ── Hero: pill eyebrow over the brand-tinted scrim ─────────────────────── */
+.hero .eyebrow{display:inline-block;padding:7px 14px;border:1px solid var(--line-dark);border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+/* ── Cards / media: soft elevation, hover lift reads shadow-2 ───────────── */
+.card{box-shadow:var(--shadow-1)}
+a.card:hover{box-shadow:var(--shadow-2)}
+.card picture{border-radius:calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0}
+.plan-card{box-shadow:var(--shadow-1)}
+.case-media{box-shadow:var(--shadow-1)}
+.work-item img{transition-duration:.8s}
+.feature-item{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-1);padding:var(--space-5)}
+.process-step{padding-top:var(--space-5)}
+
+/* ── FAQ: padded cards with a CSS chevron (details variant, no JS) ──────── */
+.faq-item{transition:box-shadow var(--dur)}
+.faq-item[open ]{box-shadow:var(--shadow-1)}
+.faq-item summary{position:relative;padding-right:56px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"";position:absolute;right:22px;top:50%;width:9px;height:9px;border-right:2px solid var(--brand-accent-deep);border-bottom:2px solid var(--brand-accent-deep);transform:translateY(-70%) rotate(45deg);transition:transform var(--dur) var(--ease)}
+.faq-item[open ] summary::after{transform:translateY(-30%) rotate(225deg)}
+
+/* ── Dark bands: radial accent-wash glow over the brand ground ──────────── */
+.cta-band{background-image:radial-gradient(60% 120% at 50% 0%,var(--accent-wash),transparent 70%)}
+.estimator-band{background-image:radial-gradient(60% 120% at 50% 0%,var(--accent-wash),transparent 70%)}
+.contact-section{background-image:radial-gradient(70% 90% at 85% 0%,var(--accent-wash),transparent 65%)}
+
+/* ── Forms: large-radius card, small-radius fields, accent focus ring ───── */
+.form-card{border-radius:var(--radius-lg)}
+.form-group input,.form-group select,.form-group textarea{border-radius:var(--radius-sm);transition:border-color var(--dur),box-shadow var(--dur)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{box-shadow:0 0 0 4px var(--accent-ring)}
+
+/* ── Footer: two-step dark gradient; the legal bar continues its end tone ── */
+.site-footer{background:linear-gradient(180deg,var(--brand-dark) 0%,var(--brand-dark-2) 100%)}
+.legal-bar{background:var(--brand-dark-2)}
+.footer-links a{transition:color var(--dur)}
+.footer-ig{transition:color var(--dur),border-color var(--dur),background var(--dur)}
+.footer-ig:hover{background:var(--accent-wash)}
+
+/* ── Mobile CTA: lifted off the page edge ───────────────────────────────── */
+.mobile-cta{box-shadow:0 -8px 24px -12px rgba(2,6,23,.35)}
+
+/* ── Reveal: framework travel / duration (reduced-motion still wins) ────── */
+.js-reveal .reveal{transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
