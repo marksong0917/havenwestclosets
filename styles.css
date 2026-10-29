@@ -383,6 +383,12 @@ h1,h2,h3{letter-spacing:-.02em}
 .header-inner{height:72px}
 @media (max-width:760px){
   .header-inner{height:64px}
+  /* The glass header's backdrop-filter makes it the containing block for
+     the fixed mobile nav panel, collapsing the v1 top/bottom pair to a
+     strip (audit fix 2026-10-29) — pin the panel height to the viewport,
+     and give the menu button a full 44px target. */
+  .main-nav{height:calc(100vh - 64px);height:calc(100dvh - 64px)}
+  .nav-toggle{min-width:44px;min-height:44px}
 }
 .main-nav a{transition:color var(--dur)}
 
@@ -427,6 +433,7 @@ a.card:hover{box-shadow:var(--shadow-2)}
 .legal-bar{background:var(--brand-dark-2)}
 .footer-links a{transition:color var(--dur)}
 .footer-ig{transition:color var(--dur),border-color var(--dur),background var(--dur)}
+.footer-ig{width:44px;height:44px}
 .footer-ig:hover{background:var(--accent-wash)}
 
 /* ── Mobile CTA: lifted off the page edge ───────────────────────────────── */
