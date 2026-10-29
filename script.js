@@ -105,4 +105,77 @@
       });
     });
   }
+
+  /* Guide form — the same progressive enhancement as the quote
+     form. The status line is created here (the guide markup
+     carries no status element of its own), so the native POST
+     stays the no-JS fallback and nothing else has to change. */
+  var guideForm = document.querySelector(".guide-form");
+  if (guideForm) {
+    var guideStatus = document.createElement("p");
+    guideStatus.className = "form-status";
+    guideStatus.setAttribute("aria-live", "polite");
+    guideForm.appendChild(guideStatus);
+    guideForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var honey = guideForm.querySelector('[name="_honey"]');
+      if (honey && honey.value) return; // honeypot
+      var name = guideForm.querySelector('[name="name"]').value.trim();
+      var email = guideForm.querySelector('[name="email"]').value.trim();
+      if (!name || !email) {
+        guideStatus.textContent = "Please add your name and email so we can send the guide.";
+        guideStatus.className = "form-status is-error";
+        return;
+      }
+      var data = {};
+      new FormData(guideForm).forEach(function (v, k) { if (k.charAt(0) !== "_") data[k] = v; });
+      var btn = guideForm.querySelector('button[type="submit"]');
+      var btnLabel = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      guideStatus.textContent = "Sending…";
+      guideStatus.className = "form-status";
+      fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        if (!r.ok) throw new Error("send failed");
+        guideForm.reset();
+        if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
+        guideStatus.textContent = "Thanks — the guide is on its way to your email.";
+        guideStatus.className = "form-status is-success";
+      }).catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
+        guideStatus.textContent = COMPANY_EMAIL
+          ? "Something went wrong sending — please email us directly at " + COMPANY_EMAIL + "."
+          : "Something went wrong sending — please try again in a moment.";
+        guideStatus.className = "form-status is-error";
+      });
+    });
+  }
+})();
+
+/* Anti-bot render token (Hub 0.65): fetch a signed timestamp from
+   the Hub and stamp it into every intake form on the page — the
+   quote form's AJAX payload picks the field up from FormData (it
+   does not start with "_"), the guide form carries it as a plain
+   hidden field. The Hub silently drops submissions that arrive
+   inhumanly fast or with a forged token. If the fetch fails the
+   form still submits; the Hub's other layers (rate limit,
+   duplicate suppression, content heuristics) still apply. */
+(function () {
+  var forms = document.querySelectorAll('form[action*="/api/intake/website/"]');
+  if (!forms.length) return;
+  var tok = forms[0].querySelector('[name="token"]');
+  var action = forms[0].getAttribute("action") || "";
+  if (!tok || !action) return;
+  var url = action.replace("website/", "challenge/")
+    + "?t=" + encodeURIComponent(tok.value);
+  fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+    if (!j || !j.c) return;
+    forms.forEach(function (f) {
+      var inp = f.querySelector('[name="c"]');
+      if (inp) inp.value = j.c;
+    });
+  }).catch(function () {});
 })();
