@@ -172,10 +172,30 @@
   var url = action.replace("website/", "challenge/")
     + "?t=" + encodeURIComponent(tok.value);
   fetch(url).then(function (r) { return r.json(); }).then(function (j) {
-    if (!j || !j.c) return;
-    forms.forEach(function (f) {
-      var inp = f.querySelector('[name="c"]');
-      if (inp) inp.value = j.c;
-    });
+    if (!j) return;
+    if (j.c) {
+      forms.forEach(function (f) {
+        var inp = f.querySelector('[name="c"]');
+        if (inp) inp.value = j.c;
+      });
+    }
+    // 0.108: Turnstile — when the Hub returns a site key with the
+    // challenge, load the widget into every intake form; its
+    // hidden cf-turnstile-response input rides the form payload.
+    if (j.ts && !window.__tsLoaded) {
+      window.__tsLoaded = 1;
+      var s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      s.async = true; s.defer = true;
+      document.head.appendChild(s);
+      forms.forEach(function (f) {
+        if (f.querySelector(".cf-turnstile")) return;
+        var d = document.createElement("div");
+        d.className = "cf-turnstile";
+        d.setAttribute("data-sitekey", j.ts);
+        var b = f.querySelector('button[type="submit"]');
+        if (b) f.insertBefore(d, b); else f.appendChild(d);
+      });
+    }
   }).catch(function () {});
 })();
