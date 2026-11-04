@@ -9,7 +9,7 @@ Brand identity and site built by [York Region Web Studio](https://yorkregionwebs
 ## Tech Stack & Infrastructure
 
 - **Front-End:** HTML5, CSS3, vanilla JavaScript — no framework, no CMS
-- **Hosting:** GitHub Pages (custom domain via `CNAME`)
+- **Hosting:** Cloudflare Pages (custom domain; repo `_headers`/`_redirects` carry the security headers and .html URL parity)
 - **Images:** WebP only, with `-sm` small variants for cards/thumbnails (see `assets/`)
 - **Contact:** The homepage quote form delivers via FormSubmit (`formsubmit.co` AJAX endpoint in `script.js`) to `marksong0000@gmail.com`; the site also links `mailto:marksong0000@gmail.com` and `tel:+12895005666`
 
