@@ -7,7 +7,7 @@
 
   /* ★ CONFIG — replace per company ─────────────────────────────────────── */
   var FORMSUBMIT_ENDPOINT = "https://forms.foxuma.com/api/intake/website/"; // form endpoint (Hub intake)
-  var COMPANY_EMAIL = "marksong0000@gmail.com"; // shown if a send fails
+  var COMPANY_EMAIL = "info@havenwestclosets.com"; // shown if a send fails
   /* ────────────────────────────────────────────────────────────────────── */
 
   /* Mobile nav */
